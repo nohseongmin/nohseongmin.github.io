@@ -21,6 +21,14 @@
       stack: ['Kotlin', 'Jetpack Compose', 'Room', 'ML Kit']
     },
     {
+      slug: 'the-sewer', name: 'The Sewer', artwork: 'the-sewer', areas: ['game'],
+      category: '공포 게임', technology: '데모',
+      summary: '하수도를 배경으로 한 공포 게임 데모.',
+      detail: '하수도를 배경으로 한 공포 게임입니다. 데모 플레이를 영상으로 공개했습니다.',
+      stack: ['공포', '게임 데모'], hasRepository: false,
+      demo: 'https://youtu.be/fRXSxDg6Gsc', demoLabel: '데모 영상 보기'
+    },
+    {
       slug: 'typing-royale', name: 'Typing Royale', artwork: 'typing', areas: ['game'],
       category: '웹 게임', technology: 'JavaScript',
       summary: '내가 문장을 끝내면 상대의 문장이 뒤섞입니다.',
@@ -227,7 +235,9 @@
       for (const tag of project.stack) tags.append(element('li', 'tech-tag', tag));
       const actions = element('div', 'dialog-actions');
       if (project.demo) actions.append(link(project.demoLabel, project.demo, 'dialog-demo'));
-      actions.append(link('GitHub 저장소', 'https://github.com/nohseongmin/' + project.slug, 'dialog-repo'));
+      if (project.hasRepository !== false) {
+        actions.append(link('GitHub 저장소', 'https://github.com/nohseongmin/' + project.slug, 'dialog-repo'));
+      }
       body.append(category, title, description, tags, actions);
       content.replaceChildren(media(project, true), body);
       dialog.setAttribute('aria-labelledby', title.id);

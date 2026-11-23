@@ -4,6 +4,10 @@
   // These scenes are portfolio excerpts. Measured values and code are from the
   // corresponding projects. The miniature interactions use fictional sample data.
   const scenes = {
+    'the-sewer': {
+      label: '오래된 비디오테이프 표지처럼 디자인한 The Sewer 데모 타이틀',
+      html: `<span class="pm-sewer-caption">HORROR GAME / DEMO</span><strong class="pm-sewer-title">THE<br>SEWER</strong>`
+    },
     slideit: {
       label: 'SlideIT의 위로 밀어 명함 공유 기능 예시',
       html: `<span class="pm-slide-backdrop"></span><span class="pm-phone">
