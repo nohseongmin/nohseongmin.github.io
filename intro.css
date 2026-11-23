@@ -45,10 +45,15 @@ html.intro-active { overflow: hidden; overscroll-behavior: none; }
 .intro-card:focus-visible { outline: 0; }
 .intro-card:focus-visible .intro-cue { outline: 2px solid #7868a9; border-radius: 3px; outline-offset: 2px; }
 .intro-grip { position: absolute; inset: 0; pointer-events: none; }
-.intro-grip img { position: absolute; display: block; height: auto; }
-/* Align the photographed paper edge with the real card. The thumb crosses that edge. */
-.grip-left { width: 27.94%; left: -.98%; bottom: 94.68%; transform: scaleX(-1); }
-.grip-right { width: 26.47%; right: -.33%; bottom: 94.96%; }
+.intro-grip img {
+  position: absolute;
+  display: block;
+  width: 109.375%;
+  height: auto;
+  left: -4.6875%;
+  /* The artwork's grip line sits 96 pixels above its lower edge. */
+  bottom: 83.125%;
+}
 
 #portfolio-intro.is-opening {
   --aperture: radial-gradient(circle at var(--intro-x) var(--intro-y),
@@ -57,9 +62,10 @@ html.intro-active { overflow: hidden; overscroll-behavior: none; }
   mask-image: var(--aperture);
 }
 .intro-revealing .intro-cue { visibility: hidden; }
-.intro-revealing .intro-grip { animation: release-grip 450ms ease-in forwards; }
+.intro-revealing .intro-grip { animation: release-grip 380ms ease-out forwards; }
 @keyframes release-grip {
-  to { transform: translateY(-45vh); opacity: 0; }
+  30% { transform: translateY(-1.5vh); opacity: .45; }
+  to { transform: translateY(-32vh); opacity: 0; }
 }
 @media (orientation: landscape) and (max-height: 450px) {
   .stage-inner {
