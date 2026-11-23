@@ -1,0 +1,9 @@
+.case-facts { margin: 1.5rem 0 0; font-size: .9375rem; line-height: 1.65; }
+.case-facts dt { margin-top: .75rem; font-weight: 650; }
+.case-facts dd { margin: .125rem 0 0; color: var(--muted); word-break: keep-all; }
+.case-sources { margin-top: 1rem; }
+.case-sources summary { cursor: pointer; }
+.case-sources a { text-decoration: underline; text-underline-offset: .2em; }
+.case-image { margin: 1rem 0; }
+.case-image img { display: block; width: 100%; max-height: 44dvh; object-fit: contain; }
+.case-image figcaption { margin-top: .5rem; color: var(--muted); font-size: .8125rem; }

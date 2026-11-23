@@ -2,6 +2,7 @@
   'use strict';
 
   const tilt = document.getElementById('card-tilt');
+  const hoverArea = document.getElementById('card-arrival');
   const fold = document.getElementById('card-fold');
   const front = document.getElementById('card-front');
   const back = document.getElementById('card-back');
@@ -9,6 +10,8 @@
   const presentation = document.getElementById('intro-presentation');
   const switches = [...document.querySelectorAll('[data-face]')];
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const HOVER_TILT = 18;
+  const GRIP_TILT = 24;
   let showingBack = false;
   let drag = null;
   let suppressClickUntil = 0;
@@ -105,14 +108,26 @@
 
   const clamp = (value, limit = 1) => Math.max(-limit, Math.min(limit, value));
 
+  function tiltTowardPointer(event) {
+    if (drag || !event.isPrimary || event.pointerType === 'touch' || reducedMotion.matches) return;
+    // The paper turns under a stationary pointer; its hit area stays on the table.
+    const bounds = hoverArea.getBoundingClientRect();
+    target.pitch = clamp(1 - 2 * (event.clientY - bounds.top) / bounds.height) * HOVER_TILT;
+    target.yaw = clamp(2 * (event.clientX - bounds.left) / bounds.width - 1) * HOVER_TILT;
+    animate();
+  }
+  hoverArea.addEventListener('pointerenter', tiltTowardPointer);
+  hoverArea.addEventListener('pointermove', tiltTowardPointer);
+  hoverArea.addEventListener('pointerleave', () => { if (!drag) rest(); });
+
   function hold(dx, dy) {
     if (reducedMotion.matches) return;
     const { gripX, gripY } = drag;
     const lever = clamp(Math.hypot(gripX, gripY));
     target.x = clamp(dx * .22, 22);
     target.y = clamp(dy * .18, 15);
-    target.pitch = gripY * 13 + clamp(dy / 24, 3) * lever;
-    target.yaw = -gripX * 15 - clamp(dx / 28, 3) * lever;
+    target.pitch = gripY * GRIP_TILT + clamp(dy / 24, 3) * lever;
+    target.yaw = -gripX * GRIP_TILT - clamp(dx / 28, 3) * lever;
     target.roll = gripX * 2 + clamp((gripX * dy - gripY * dx) / 28, 4);
     target.lift = .14 + .7 * lever + .16 * clamp(Math.hypot(dx, dy) / 65);
     animate();
@@ -171,7 +186,7 @@
   window.addEventListener('pointerup', finish);
   window.addEventListener('pointercancel', finish);
   tilt.addEventListener('lostpointercapture', event => { if (event.target === tilt) finish(event); });
-  window.addEventListener('blur', () => { if (drag) release(); });
+  window.addEventListener('blur', release);
   reducedMotion.addEventListener('change', release);
 
   document.getElementById('about-slideit')?.addEventListener('click', event => {

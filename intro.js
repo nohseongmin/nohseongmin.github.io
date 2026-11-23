@@ -6,9 +6,10 @@
   const card = document.getElementById('card-tilt');
   const arrival = document.getElementById('card-arrival');
   const presentation = document.getElementById('intro-presentation');
+  const skip = document.getElementById('intro-skip');
   const home = document.getElementById('home');
-  if (!intro || !button || !card || !arrival || !presentation || !home ||
-      window.location.hash || window.scrollY > 0) return;
+  if (!intro || !button || !card || !arrival || !presentation || !skip || !home ||
+      window.location.hash) return;
 
   const blocked = Array.from(document.querySelectorAll('[data-intro-block]'));
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -38,7 +39,8 @@
     window.cancelAnimationFrame(frame);
     window.removeEventListener('resize', measureHole);
     motion.removeEventListener?.('change', onMotionChange);
-    button.removeEventListener('click', enter);
+    arrival.removeEventListener('click', enter);
+    skip.removeEventListener('click', finish);
     presentation.hidden = true;
     intro.hidden = true;
     blocked.forEach(element => { element.inert = false; });
@@ -81,12 +83,18 @@
     frame = window.requestAnimationFrame(expand);
   }
 
-  button.addEventListener('click', enter);
+  // At a tilted corner the browser can target the stationary wrapper itself.
+  arrival.addEventListener('click', enter);
+  skip.addEventListener('click', finish);
   motion.addEventListener?.('change', onMotionChange);
   blocked.forEach(element => { element.inert = true; });
   document.documentElement.classList.add('intro-active');
   intro.hidden = false;
   presentation.hidden = false;
+  // A reload can restore the old scroll offset after the card has been laid out.
+  window.addEventListener('pageshow', () => requestAnimationFrame(() => {
+    if (!intro.hidden && !window.location.hash) window.scrollTo({ top: 0, behavior: 'instant' });
+  }), { once: true });
   if (!motion.matches && arrival.animate) {
     descent = arrival.animate(
       [{ transform: 'translateY(-48px)' }, { transform: 'translateY(0px)' }],

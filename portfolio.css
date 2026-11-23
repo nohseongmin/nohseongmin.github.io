@@ -26,8 +26,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--green); outline
 .site-header { background: var(--canvas); }
 .header-inner { display: flex; align-items: center; justify-content: space-between; min-height: 68px; border-bottom: 1px solid var(--rule); }
 .brand, .site-header nav, .git-link { display: inline-flex; align-items: center; }
-.brand { gap: 11px; font-size: 18px; font-weight: 800; white-space: nowrap; }
-.brand img { width: 31px; height: 31px; }
+.brand { font-size: 18px; font-weight: 800; white-space: nowrap; }
 .brand-slash { font-weight: 400; color: var(--primary); margin-inline: 10px; }
 .brand-latin { font-size: 15px; font-weight: 500; letter-spacing: -.02em; }
 .site-header nav { gap: clamp(18px, 3vw, 38px); font-size: 14px; font-weight: 650; }
@@ -42,7 +41,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--green); outline
 }
 .stage-inner { position: relative; display: grid; grid-template-rows: 58px 1fr 64px; min-height: 485px; height: clamp(485px, 62svh, 600px); }
 .stage-heading { align-self: end; color: var(--muted); font-size: 14px; font-weight: 600; }
-.card-well { display: grid; place-items: center; position: relative; perspective: 1250px; }
+.card-well { display: grid; place-items: center; position: relative; }
 .card-tilt {
   position: relative; width: clamp(425px, 43vw, 596px); aspect-ratio: 1.8; container-type: inline-size;
   touch-action: pan-y pinch-zoom; user-select: none; -webkit-user-select: none; transform-style: preserve-3d;
@@ -142,8 +141,7 @@ body:has(#project-dialog[open]) { overflow: hidden; }
 @media (max-width: 600px) {
   .header-inner { min-height: 56px; }
   .site-header nav { gap: 15px; }
-  .brand { gap: 5px; font-size: 16px; }
-  .brand img { width: 23px; }
+  .brand { font-size: 16px; }
   .brand-slash { margin-inline: 6px; }
   .brand-latin { font-size: 14px; }
   .contact-nav { display: none; }

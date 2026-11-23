@@ -3,34 +3,52 @@ name: Deploy portfolio to GitHub Pages
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
-
-concurrency:
-  group: github-pages
-  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Check site entry point and downloads
+      - name: Check scripts and interactions
         run: |
-          test -s index.html
-          test -s art/hand-grip.webp
-          test -s art/refactoring-games-front.svg
-          test -s downloads/noh-seongmin-card.pdf
+          for script in *.js; do node --check "$script"; done
+          node --test tests/*.test.cjs
+      - name: Stage the site and verify its internal links
+        run: |
+          mkdir "$RUNNER_TEMP/portfolio"
+          cp -R index.html *.css *.js art downloads "$RUNNER_TEMP/portfolio/"
+          python3 tests/check_site.py "$RUNNER_TEMP/portfolio"
+      - name: Verify first-visit clicks in Chrome
+        env:
+          PORTFOLIO_TEST_PORT: 8765
+        run: |
+          npm ci --prefix tests --ignore-scripts
+          python3 -m http.server "$PORTFOLIO_TEST_PORT" --bind 127.0.0.1 --directory "$RUNNER_TEMP/portfolio" &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          base_url="http://127.0.0.1:$PORTFOLIO_TEST_PORT/"
+          curl --silent --fail --retry 5 --retry-connrefused "$base_url" --output /dev/null
+          node tests/intro-browser.cjs "$base_url"
       - uses: actions/configure-pages@v5
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
       - uses: actions/upload-pages-artifact@v4
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         with:
-          path: .
+          path: ${{ runner.temp }}/portfolio
 
   deploy:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
+    concurrency:
+      group: github-pages
+      cancel-in-progress: false
     permissions:
       pages: write
       id-token: write

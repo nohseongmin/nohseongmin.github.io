@@ -12,7 +12,18 @@ html.intro-active { overflow: hidden; overscroll-behavior: none; }
 /* Lift the existing card above the veil without changing its layout or perspective. */
 .intro-active .card-stage { isolation: auto; overflow: visible; }
 .intro-active .card-well { z-index: 21; }
-.card-arrival { position: relative; transform-style: preserve-3d; }
+.intro-active .card-arrival { cursor: pointer; }
+.intro-skip { display: none; }
+.intro-active .intro-skip {
+  display: block; position: fixed; top: 1rem; right: 1.25rem; z-index: 22;
+  padding: .7rem; color: #483e55; text-decoration: underline; text-underline-offset: .22em;
+}
+.card-arrival {
+  --edge-room: clamp(12px, 2vw, 24px);
+  /* Keep the stationary hit area outside the rotating faces' 3D context. */
+  position: relative; perspective: 1250px;
+  padding: var(--edge-room); margin: calc(-1 * var(--edge-room));
+}
 
 #intro-presentation { position: absolute; inset: 0; transform: translateZ(2px); }
 .intro-card {
@@ -24,26 +35,10 @@ html.intro-active { overflow: hidden; overscroll-behavior: none; }
   border: 0;
   border-radius: inherit;
   background: transparent;
-  color: #463d53;
   cursor: pointer;
   touch-action: manipulation;
 }
-.intro-cue {
-  position: absolute;
-  left: 50%;
-  top: 100%;
-  margin-top: clamp(20px, 3.5vh, 35px);
-  padding: 5px 6px;
-  transform: translateX(-50%) rotate(3deg);
-  font-size: 15px;
-  font-weight: 550;
-  line-height: 1.4;
-  letter-spacing: -.025em;
-  white-space: nowrap;
-}
-.intro-card:hover .intro-cue { text-decoration: underline; text-underline-offset: .28em; }
-.intro-card:focus-visible { outline: 0; }
-.intro-card:focus-visible .intro-cue { outline: 2px solid #7868a9; border-radius: 3px; outline-offset: 2px; }
+.intro-card:focus-visible, .intro-skip:focus-visible { outline: 2px solid #66518a; outline-offset: 3px; }
 .intro-grip { position: absolute; inset: 0; pointer-events: none; }
 .intro-grip img {
   position: absolute;
@@ -61,7 +56,6 @@ html.intro-active { overflow: hidden; overscroll-behavior: none; }
   -webkit-mask-image: var(--aperture);
   mask-image: var(--aperture);
 }
-.intro-revealing .intro-cue { visibility: hidden; }
 .intro-revealing .intro-grip { animation: release-grip 380ms ease-out forwards; }
 @keyframes release-grip {
   30% { transform: translateY(-1.5vh); opacity: .45; }
@@ -74,12 +68,11 @@ html.intro-active { overflow: hidden; overscroll-behavior: none; }
     grid-template-rows: 24px 1fr 44px;
   }
   .card-tilt { width: min(74vw, 510px, calc((100svh - 164px) * 1.8)); }
-  .intro-cue { margin-top: 7px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .intro-revealing .intro-grip { animation: none; }
 }
 @media print {
-  #portfolio-intro, #intro-presentation { display: none !important; }
+  #portfolio-intro, #intro-presentation, .intro-skip { display: none !important; }
   html.intro-active { overflow: visible; }
 }

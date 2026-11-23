@@ -6,23 +6,35 @@
   <meta name="theme-color" content="#0a0d3a">
   <meta name="description" content="노성민의 디지털 명함과 프로젝트 아카이브. 게임, 웹 서비스, Claude 스킬과 개발 도구를 둘러보세요.">
   <title>노성민 — 프로젝트 아카이브</title>
-  <link rel="icon" href="mark.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://nohseongmin.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:url" content="https://nohseongmin.github.io/">
+  <meta property="og:title" content="노성민 · 리팩토링 게임즈 | 개발 포트폴리오">
+  <meta property="og:description" content="게임·앱·웹 서비스 개인 개발 사례와 프리랜서 개발 문의">
+  <meta property="og:image" content="https://nohseongmin.github.io/art/portfolio-share.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="노성민 프로젝트 포트폴리오와 리팩토링 게임즈의 종이 명함">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="portfolio.css">
   <link rel="stylesheet" href="media.css">
-  <link rel="stylesheet" href="intro.css?v=violet-grip">
+  <link rel="stylesheet" href="archive-nav.css">
+  <link rel="stylesheet" href="intro.css">
   <script src="intro.js" defer></script>
   <script src="media.js" defer></script>
+  <script src="project-cases.js" defer></script>
   <script src="archive.js" defer></script>
   <script src="card.js" defer></script>
 </head>
 <body>
   <div id="portfolio-intro" aria-hidden="true" hidden></div>
+  <a class="intro-skip" id="intro-skip" href="#projects">건너뛰기</a>
   <div id="portfolio-site">
   <a class="skip-link" href="#projects" data-intro-block>프로젝트로 건너뛰기</a>
   <header class="site-header" data-intro-block>
     <div class="header-inner">
-      <a class="brand" href="#home" aria-label="노성민 홈">
-        <img src="mark.svg" alt="" width="32" height="32">
+      <a class="brand" href="./" aria-label="노성민 홈">
         <span>노성민<span class="brand-slash">/</span><span class="brand-latin" lang="en">Portfolio</span></span>
       </a>
       <nav aria-label="주요 메뉴">
@@ -54,9 +66,7 @@
               </div>
             </div>
             <div id="intro-presentation" hidden>
-              <button class="intro-card" id="intro-card" type="button" aria-label="리팩토링 게임즈 대표 노성민의 명함을 받아 포트폴리오 열기">
-                <span class="intro-cue" aria-hidden="true">명함을 눌러 입장하세요</span>
-              </button>
+              <button class="intro-card" id="intro-card" type="button" aria-label="리팩토링 게임즈 대표 노성민의 명함을 받아 포트폴리오 열기"></button>
               <div class="intro-grip" aria-hidden="true">
                 <img src="art/hand-grip.webp?v=violet-grip" alt="" draggable="false" fetchpriority="high">
               </div>
@@ -72,12 +82,173 @@
       </div>
     </section>
     <section id="projects" class="archive layout" data-intro-block>
-      <div class="archive-heading">
+      <div class="archive-heading" id="featured">
         <h2 id="projects-title" tabindex="-1">프로젝트 아카이브</h2>
         <div class="archive-status"><span id="project-count" aria-live="polite"></span><button id="reset-filter" type="button" hidden>전체 보기</button></div>
       </div>
-      <div id="projects-grid" class="projects-grid"></div>
-      <noscript><p>프로젝트 목록은 <a href="https://github.com/nohseongmin?tab=repositories">GitHub 저장소</a>에서 볼 수 있습니다.</p></noscript>
+      <div id="projects-grid" class="projects-grid">
+        <article class="project-item">
+          <a class="project-card" data-project="SlideIt" href="https://github.com/nohseongmin/SlideIt">
+            <h3 class="project-title">SlideIT</h3>
+            <p class="project-summary">손짓으로 건네고 카메라로 읽는 디지털 명함.</p>
+            <span class="project-source">GitHub 저장소</span>
+          </a>
+        </article>
+        <article class="project-item">
+          <a class="project-card" data-project="the-sewer" href="https://youtu.be/fRXSxDg6Gsc">
+            <h3 class="project-title">The Sewer</h3>
+            <p class="project-summary">하수도를 배경으로 한 공포 게임 데모.</p>
+            <span class="project-source">데모 영상 보기</span>
+          </a>
+        </article>
+        <article class="project-item">
+          <a class="project-card" data-project="typing-royale" href="https://github.com/nohseongmin/typing-royale">
+            <h3 class="project-title">Typing Royale</h3>
+            <p class="project-summary">내가 문장을 끝내면 상대의 문장이 뒤섞입니다.</p>
+            <span class="project-source">GitHub 저장소</span>
+          </a>
+        </article>
+        <article class="project-item">
+          <a class="project-card" data-project="abathur" href="https://github.com/nohseongmin/abathur">
+            <h3 class="project-title">abathur</h3>
+            <p class="project-summary">한국어 답변의 표현을 바꿔 토큰을 얼마나 아끼는지 잽니다.</p>
+            <span class="project-source">GitHub 저장소</span>
+          </a>
+        </article>
+        <article class="project-item">
+          <a class="project-card" data-project="gonggang-meet" href="https://github.com/nohseongmin/gonggang-meet">
+            <h3 class="project-title">공강밋</h3>
+            <p class="project-summary">팀원들의 시간표에서 함께 비는 회의 시간 세 곳을 찾습니다.</p>
+            <span class="project-source">GitHub 저장소</span>
+          </a>
+        </article>
+        <article class="project-item">
+          <a class="project-card" data-project="rubber-duck-debugger" href="https://github.com/nohseongmin/rubber-duck-debugger">
+            <h3 class="project-title">Rubber Duck Debugger</h3>
+            <p class="project-summary">코드가 막힐 때 바탕화면 한쪽에서 꽥 하고 우는 오리.</p>
+            <span class="project-source">GitHub 저장소</span>
+          </a>
+        </article>
+        <article class="project-item">
+          <a class="project-card" data-project="git-gardener" href="https://github.com/nohseongmin/git-gardener">
+            <h3 class="project-title">Git Gardener</h3>
+            <p class="project-summary">Windows 트레이에서 저장소를 돌보고 변경 사항을 PR로 보냅니다.</p>
+            <span class="project-source">GitHub 저장소</span>
+          </a>
+        </article>
+        <article class="project-item">
+          <a class="project-card" data-project="tracking-ai" href="https://github.com/nohseongmin/tracking-ai">
+            <h3 class="project-title">tracking-ai</h3>
+            <p class="project-summary">공포게임에서 플레이어의 3초 뒤 위치를 예측하는 실험.</p>
+            <span class="project-source">GitHub 저장소</span>
+          </a>
+        </article>
+        <article class="project-item">
+          <a class="project-card" data-project="daily-tangle" href="https://github.com/nohseongmin/daily-tangle">
+            <h3 class="project-title">Daily Tangle</h3>
+            <p class="project-summary">하루에 하나, 얽힌 점을 움직여 모든 선의 교차를 푸는 퍼즐.</p>
+            <span class="project-source">GitHub 저장소</span>
+          </a>
+        </article>
+        <article class="project-item">
+          <a class="project-card" data-project="mixtape-studio" href="https://github.com/nohseongmin/mixtape-studio">
+            <h3 class="project-title">Mixtape Studio</h3>
+            <p class="project-summary">여러 곡의 무음 구간을 정리하고 한 파일로 잇습니다.</p>
+            <span class="project-source">GitHub 저장소</span>
+          </a>
+        </article>
+        <article class="project-item">
+          <a class="project-card" data-project="claude-code-silent-mode" href="https://github.com/nohseongmin/claude-code-silent-mode">
+            <h3 class="project-title">Claude Code Silent Mode</h3>
+            <p class="project-summary">작업 과정의 중계는 줄이고 결과를 한 줄로 받습니다.</p>
+            <span class="project-source">GitHub 저장소</span>
+          </a>
+        </article>
+        <article class="project-item">
+          <a class="project-card" data-project="claude-skill-finder" href="https://github.com/nohseongmin/claude-skill-finder">
+            <h3 class="project-title">Claude Skill Finder</h3>
+            <p class="project-summary">새 기능을 만들기 전에 이미 있는 스킬을 찾습니다.</p>
+            <span class="project-source">GitHub 저장소</span>
+          </a>
+        </article>
+        <article class="project-item">
+          <a class="project-card" data-project="NOCAP-Extension" href="https://github.com/nohseongmin/NOCAP-Extension">
+            <h3 class="project-title">NOCAP</h3>
+            <p class="project-summary">유튜브 자막을 분석해 영상의 주장을 살펴봅니다.</p>
+            <span class="project-source">GitHub 저장소</span>
+          </a>
+        </article>
+        <article class="project-item">
+          <a class="project-card" data-project="VibeGuard" href="https://github.com/nohseongmin/VibeGuard">
+            <h3 class="project-title">VibeGuard</h3>
+            <p class="project-summary">AI가 작성한 코드의 보안 문제와 패키지 이름을 점검합니다.</p>
+            <span class="project-source">GitHub 저장소</span>
+          </a>
+        </article>
+        <article class="project-item">
+          <a class="project-card" data-project="pairing-buddy" href="https://github.com/nohseongmin/pairing-buddy">
+            <h3 class="project-title">Pairing Buddy</h3>
+            <p class="project-summary">술과 안주 카드를 넘기며 내 취향을 고릅니다.</p>
+            <span class="project-source">GitHub 저장소</span>
+          </a>
+        </article>
+        <article class="project-item">
+          <a class="project-card" data-project="stonks-atlas" href="https://github.com/nohseongmin/stonks-atlas">
+            <h3 class="project-title">Stonks Atlas</h3>
+            <p class="project-summary">Python으로 만든 Stonks Atlas의 공개 작업 기록.</p>
+            <span class="project-source">GitHub 저장소</span>
+          </a>
+        </article>
+        <article class="project-item">
+          <a class="project-card" data-project="songeum-lab" href="https://github.com/nohseongmin/songeum-lab">
+            <h3 class="project-title">손금연구소</h3>
+            <p class="project-summary">브라우저 안에서 손바닥 사진의 손금을 살펴봅니다.</p>
+            <span class="project-source">GitHub 저장소</span>
+          </a>
+        </article>
+        <article class="project-item">
+          <a class="project-card" data-project="vs-arena" href="https://github.com/nohseongmin/vs-arena">
+            <h3 class="project-title">VS Arena</h3>
+            <p class="project-summary">시드 하나를 공유하면 같은 대결을 다시 볼 수 있습니다.</p>
+            <span class="project-source">GitHub 저장소</span>
+          </a>
+        </article>
+        <article class="project-item">
+          <a class="project-card" data-project="Refuel" href="https://github.com/nohseongmin/Refuel">
+            <h3 class="project-title">Refuel</h3>
+            <p class="project-summary">Claude Code를 얼마나 썼고 언제 다시 쓸 수 있는지 봅니다.</p>
+            <span class="project-source">GitHub 저장소</span>
+          </a>
+        </article>
+        <article class="project-item">
+          <a class="project-card" data-project="coding-rules" href="https://github.com/nohseongmin/coding-rules">
+            <h3 class="project-title">Coding Rules</h3>
+            <p class="project-summary">AI가 쓴 코드도 같은 기준으로 검토할 수 있게 만든 규칙집.</p>
+            <span class="project-source">GitHub 저장소</span>
+          </a>
+        </article>
+        <article class="project-item">
+          <a class="project-card" data-project="python" href="https://github.com/nohseongmin/python">
+            <h3 class="project-title">Python</h3>
+            <p class="project-summary">Python으로 작성한 코드를 모은 저장소.</p>
+            <span class="project-source">GitHub 저장소</span>
+          </a>
+        </article>
+        <article class="project-item">
+          <a class="project-card" data-project="tic-tac-toe-plus" href="https://github.com/nohseongmin/tic-tac-toe-plus">
+            <h3 class="project-title">Tic-Tac-Toe Plus</h3>
+            <p class="project-summary">작은 판과 큰 판을 함께 쓰는 얼티밋 틱택토 구상.</p>
+            <span class="project-source">GitHub 저장소</span>
+          </a>
+        </article>
+        <article class="project-item">
+          <a class="project-card" data-project="ophey" href="https://github.com/nohseongmin/ophey">
+            <h3 class="project-title">Ophey</h3>
+            <p class="project-summary">패드를 눌러 강남스타일 밈 사운드를 재생합니다.</p>
+            <span class="project-source">GitHub 저장소</span>
+          </a>
+        </article>
+      </div>
     </section>
   </main>
   <footer id="contact" data-intro-block><div class="layout footer-inner"><div><h2>프리랜서 작업 문의</h2><a class="mail" href="mailto:sm9375693@gmail.com">sm9375693@gmail.com</a></div><div class="footer-links"><a class="download" href="downloads/noh-seongmin-card.pdf" download="Noh-Seongmin-Freelance-Card.pdf">명함 PDF 받기</a><a class="footer-git" href="https://github.com/nohseongmin/nohseongmin#readme" target="_blank" rel="noreferrer">GitHub 프로필 README</a></div></div></footer>
