@@ -1,0 +1,79 @@
+html { scrollbar-gutter: stable; }
+html.intro-active { overflow: hidden; overscroll-behavior: none; }
+
+#portfolio-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  background: #eeeae4;
+  touch-action: none;
+}
+
+/* Lift the existing card above the veil without changing its layout or perspective. */
+.intro-active .card-stage { isolation: auto; overflow: visible; }
+.intro-active .card-well { z-index: 21; }
+.card-arrival { position: relative; transform-style: preserve-3d; }
+
+#intro-presentation { position: absolute; inset: 0; transform: translateZ(2px); }
+.intro-card {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  color: #463d53;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.intro-cue {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  margin-top: clamp(20px, 3.5vh, 35px);
+  padding: 5px 6px;
+  transform: translateX(-50%) rotate(3deg);
+  font-size: 15px;
+  font-weight: 550;
+  line-height: 1.4;
+  letter-spacing: -.025em;
+  white-space: nowrap;
+}
+.intro-card:hover .intro-cue { text-decoration: underline; text-underline-offset: .28em; }
+.intro-card:focus-visible { outline: 0; }
+.intro-card:focus-visible .intro-cue { outline: 2px solid #7868a9; border-radius: 3px; outline-offset: 2px; }
+.intro-grip { position: absolute; inset: 0; pointer-events: none; }
+.intro-grip img { position: absolute; display: block; height: auto; }
+/* Align the photographed paper edge with the real card. The thumb crosses that edge. */
+.grip-left { width: 27.94%; left: -.98%; bottom: 94.68%; transform: scaleX(-1); }
+.grip-right { width: 26.47%; right: -.33%; bottom: 94.96%; }
+
+#portfolio-intro.is-opening {
+  --aperture: radial-gradient(circle at var(--intro-x) var(--intro-y),
+    transparent max(0px, calc(var(--intro-radius) - 1px)), #000 var(--intro-radius));
+  -webkit-mask-image: var(--aperture);
+  mask-image: var(--aperture);
+}
+.intro-revealing .intro-cue { visibility: hidden; }
+.intro-revealing .intro-grip { animation: release-grip 450ms ease-in forwards; }
+@keyframes release-grip {
+  to { transform: translateY(-45vh); opacity: 0; }
+}
+@media (orientation: landscape) and (max-height: 450px) {
+  .stage-inner {
+    min-height: 0;
+    height: calc(100svh - 68px);
+    grid-template-rows: 24px 1fr 44px;
+  }
+  .card-tilt { width: min(74vw, 510px, calc((100svh - 164px) * 1.8)); }
+  .intro-cue { margin-top: 7px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-revealing .intro-grip { animation: none; }
+}
+@media print {
+  #portfolio-intro, #intro-presentation { display: none !important; }
+  html.intro-active { overflow: visible; }
+}

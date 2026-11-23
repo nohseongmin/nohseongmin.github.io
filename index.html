@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0d3a">
+  <meta name="description" content="노성민의 디지털 명함과 프로젝트 아카이브. 게임, 웹 서비스, Claude 스킬과 개발 도구를 둘러보세요.">
+  <title>노성민 — 프로젝트 아카이브</title>
+  <link rel="icon" href="mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="portfolio.css">
+  <link rel="stylesheet" href="media.css">
+  <link rel="stylesheet" href="intro.css">
+  <script src="intro.js" defer></script>
+  <script src="media.js" defer></script>
+  <script src="archive.js" defer></script>
+  <script src="card.js" defer></script>
+</head>
+<body>
+  <div id="portfolio-intro" aria-hidden="true" hidden></div>
+  <div id="portfolio-site">
+  <a class="skip-link" href="#projects" data-intro-block>프로젝트로 건너뛰기</a>
+  <header class="site-header" data-intro-block>
+    <div class="header-inner">
+      <a class="brand" href="#home" aria-label="노성민 홈">
+        <img src="mark.svg" alt="" width="32" height="32">
+        <span>노성민<span class="brand-slash">/</span><span class="brand-latin" lang="en">Portfolio</span></span>
+      </a>
+      <nav aria-label="주요 메뉴">
+        <a href="#projects">프로젝트</a><a class="contact-nav" href="#contact">연락처</a>
+        <a class="git-link" href="https://github.com/nohseongmin" rel="noreferrer" target="_blank">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .8a11.2 11.2 0 0 0-3.54 21.82c.56.1.76-.24.76-.54v-2.1c-3.12.68-3.78-1.33-3.78-1.33-.51-1.29-1.25-1.63-1.25-1.63-1.02-.69.08-.68.08-.68 1.13.08 1.72 1.16 1.72 1.16 1 1.71 2.63 1.22 3.27.93.1-.72.39-1.22.71-1.5-2.49-.28-5.11-1.24-5.11-5.54 0-1.23.44-2.23 1.16-3.02-.12-.29-.5-1.44.11-3 0 0 .95-.3 3.08 1.15a10.7 10.7 0 0 1 5.6 0c2.14-1.45 3.08-1.15 3.08-1.15.62 1.56.23 2.71.12 3 .73.79 1.16 1.79 1.16 3.02 0 4.31-2.63 5.25-5.14 5.52.4.35.76 1.03.76 2.08v3.09c0 .3.2.65.77.54A11.2 11.2 0 0 0 12 .8Z"/></svg>GitHub
+        </a>
+      </nav>
+    </div>
+  </header>
+  <main id="home" tabindex="-1">
+    <section class="card-stage" aria-label="노성민의 디지털 명함">
+      <div class="stage-inner">
+        <div class="stage-heading" data-intro-block>디지털 명함</div>
+        <div class="card-well">
+          <div class="card-arrival" id="card-arrival">
+          <div class="card-tilt" id="card-tilt">
+            <div class="card-fold" id="card-fold" data-intro-block>
+              <div class="paper card-front" id="card-front">
+                <img class="front-print" src="art/refactoring-games-front.svg" width="900" height="500" alt="">
+                <div class="front-accessible"><h1>노성민</h1><p>리팩토링 게임즈 대표 · <span lang="en">Refactoring Games</span></p></div>
+                <button class="front-hit" type="button" id="flip-front" aria-label="명함 뒤집어 작업 분야 보기"></button>
+                <a class="front-contact front-mail" href="mailto:sm9375693@gmail.com"><span class="front-accessible">이메일 sm9375693@gmail.com</span></a>
+                <a class="front-contact front-github" href="https://github.com/nohseongmin" target="_blank" rel="noopener noreferrer"><span class="front-accessible">GitHub github.com/nohseongmin</span></a>
+              </div>
+              <div class="paper card-back" id="card-back" inert aria-hidden="true">
+                <div class="back-copy"><h2>작업 분야</h2><p>육각형에서 분야를 골라<br>작업을 살펴보세요.</p><span class="back-key">숫자 = 프로젝트 수</span></div>
+                <div class="radar" id="radar" aria-label="분야별 프로젝트 수"></div>
+              </div>
+            </div>
+            <div id="intro-presentation" hidden>
+              <button class="intro-card" id="intro-card" type="button" aria-label="리팩토링 게임즈 대표 노성민의 명함을 받아 포트폴리오 열기">
+                <span class="intro-cue" aria-hidden="true">명함을 눌러 입장하세요</span>
+              </button>
+              <!-- Hands cropped from a photograph by jarmoluk on Pixabay.
+                   https://pixabay.com/photos/business-card-contact-business-427520/ -->
+              <div class="intro-grip" aria-hidden="true">
+                <img class="grip-left" src="art/hand-grip.webp" alt="" draggable="false" fetchpriority="high">
+                <img class="grip-right" src="art/hand-grip.webp" alt="" draggable="false" fetchpriority="high">
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+        <div class="stage-controls" data-intro-block>
+          <p class="gesture-tip"><span class="pointer-hint">모서리를 잡고 움직여 보세요</span><span class="touch-hint">옆으로 밀어 뒤집기</span></p>
+          <div class="face-switch" role="group" aria-label="명함 면 선택"><button type="button" data-face="front" aria-pressed="true">앞면</button><button type="button" data-face="back" aria-pressed="false">뒷면</button></div>
+          <button class="slideit-link" type="button" id="about-slideit">명함 앱 SlideIT 보기</button>
+        </div>
+      </div>
+    </section>
+    <section id="projects" class="archive layout" data-intro-block>
+      <div class="archive-heading">
+        <h2 id="projects-title" tabindex="-1">프로젝트 아카이브</h2>
+        <div class="archive-status"><span id="project-count" aria-live="polite"></span><button id="reset-filter" type="button" hidden>전체 보기</button></div>
+      </div>
+      <div id="projects-grid" class="projects-grid"></div>
+      <noscript><p>프로젝트 목록은 <a href="https://github.com/nohseongmin?tab=repositories">GitHub 저장소</a>에서 볼 수 있습니다.</p></noscript>
+    </section>
+  </main>
+  <footer id="contact" data-intro-block><div class="layout footer-inner"><div><h2>프리랜서 작업 문의</h2><a class="mail" href="mailto:sm9375693@gmail.com">sm9375693@gmail.com</a></div><div class="footer-links"><a class="download" href="downloads/noh-seongmin-card.pdf" download="Noh-Seongmin-Freelance-Card.pdf">명함 PDF 받기</a><a class="footer-git" href="https://github.com/nohseongmin/nohseongmin#readme" target="_blank" rel="noreferrer">GitHub 프로필 README</a></div></div></footer>
+  <dialog id="project-dialog" aria-labelledby="project-title"><button id="dialog-close" class="dialog-close" aria-label="프로젝트 상세 닫기" type="button">×</button><div id="dialog-content"></div></dialog>
+  </div>
+</body>
+</html>
