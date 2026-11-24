@@ -30,8 +30,8 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--green); outline
 .brand-slash { font-weight: 400; color: var(--primary); margin-inline: 10px; }
 .brand-latin { font-size: 15px; font-weight: 500; letter-spacing: -.02em; }
 .site-header nav { gap: clamp(18px, 3vw, 38px); font-size: 14px; font-weight: 650; }
-.site-header nav a, .footer-git { text-underline-offset: .28em; }
-.site-header nav a:hover, .footer-git:hover { color: var(--link); text-decoration: underline; }
+.site-header nav a, .footer-link { text-underline-offset: .28em; }
+.site-header nav a:hover, .footer-link:hover { color: var(--link); text-decoration: underline; }
 .git-link { gap: 6px; }
 .git-link svg { width: 16px; height: 16px; }
 .card-stage {
